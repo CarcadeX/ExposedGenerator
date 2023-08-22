@@ -1,10 +1,10 @@
-package me.redtea.exposedgenerator.processor.mapper
+package tech.carcadex.exposedgenerator.processor.mapper
 
 import com.google.devtools.ksp.KspExperimental
 import com.google.devtools.ksp.getAnnotationsByType
 import com.google.devtools.ksp.isAnnotationPresent
 import com.google.devtools.ksp.symbol.KSPropertyDeclaration
-import me.redtea.exposedgenerator.processor.model.Field
+import tech.carcadex.exposedgenerator.processor.model.Field
 import java.io.File
 import kotlin.reflect.KClass
 

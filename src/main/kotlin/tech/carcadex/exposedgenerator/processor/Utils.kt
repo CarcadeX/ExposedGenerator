@@ -1,4 +1,4 @@
-package me.redtea.exposedgenerator.processor
+package tech.carcadex.exposedgenerator.processor
 
 import com.google.devtools.ksp.symbol.KSType
 import com.google.devtools.ksp.symbol.KSTypeReference

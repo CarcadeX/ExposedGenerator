@@ -1,4 +1,4 @@
-package me.redtea.exposedgenerator.processor.model
+package tech.carcadex.exposedgenerator.processor.model
 
 import com.google.devtools.ksp.processing.CodeGenerator
 

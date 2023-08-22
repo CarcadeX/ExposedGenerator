@@ -1,4 +1,4 @@
-package me.redtea.exposedgenerator.processor
+package tech.carcadex.exposedgenerator.processor
 
 fun collectionTable(tableName: String, packageName: String, type: String, sqlType: String, typeArgs: List<String>, ownerTable: String, ownerDao: String): String = """
 package $packageName  
@@ -8,7 +8,7 @@ import org.jetbrains.exposed.dao.IntEntityClass
 import org.jetbrains.exposed.dao.id.EntityID
 import org.jetbrains.exposed.dao.id.IntIdTable
 
-@me.redtea.exposedgenerator.annotations.GeneratedTable
+@tech.carcadex.exposedgenerator.annotations.GeneratedTable
 object $tableName : IntIdTable() {
     val value = $sqlType("value"${if(typeArgs.isNotEmpty()) ", " + typeArgs.joinToString("\n") else ""})
     val owner = reference("owner", ${ownerTable})

@@ -1,4 +1,4 @@
-package me.redtea.exposedgenerator.processor
+package tech.carcadex.exposedgenerator.processor
 
 import com.google.devtools.ksp.KspExperimental
 import com.google.devtools.ksp.getAnnotationsByType
@@ -7,15 +7,14 @@ import com.google.devtools.ksp.isAnnotationPresent
 import com.google.devtools.ksp.processing.CodeGenerator
 import com.google.devtools.ksp.processing.Dependencies
 import com.google.devtools.ksp.processing.KSPLogger
-import com.google.devtools.ksp.symbol.*
-import me.redtea.exposedgenerator.annotations.ExposedTable
-import me.redtea.exposedgenerator.annotations.ID
-import me.redtea.exposedgenerator.processor.mapper.FieldMapService
-import me.redtea.exposedgenerator.processor.model.Field
-import me.redtea.exposedgenerator.processor.model.KeyData
-import me.redtea.exposedgenerator.processor.model.TableContext
+import com.google.devtools.ksp.symbol.KSClassDeclaration
+import com.google.devtools.ksp.symbol.KSPropertyDeclaration
+import com.google.devtools.ksp.symbol.KSVisitorVoid
+import tech.carcadex.exposedgenerator.processor.mapper.FieldMapService
+import tech.carcadex.exposedgenerator.processor.model.Field
+import tech.carcadex.exposedgenerator.processor.model.KeyData
+import tech.carcadex.exposedgenerator.processor.model.TableContext
 import java.io.OutputStreamWriter
-
 
 
 class TableVisitor(private val codeGenerator: CodeGenerator,
@@ -31,11 +30,11 @@ class TableVisitor(private val codeGenerator: CodeGenerator,
     override fun visitClassDeclaration(classDeclaration: KSClassDeclaration, data: Unit) {
         packageName = classDeclaration.packageName.asString()
         className = classDeclaration.simpleName.asString()
-        val fromAnnotation = classDeclaration.getAnnotationsByType(ExposedTable::class).first().name
+        val fromAnnotation = classDeclaration.getAnnotationsByType(tech.carcadex.exposedgenerator.annotations.ExposedTable::class).first().name
         tableName = if(fromAnnotation != "") fromAnnotation else (if(className.endsWith("s")) className + "es" else className + "s")
 
         classDeclaration.getDeclaredProperties().forEach { it.accept(this, Unit) }
-        if(keyDataNullable == null) throw IdNotPresentException()
+        if(keyDataNullable == null) throw tech.carcadex.exposedgenerator.processor.IdNotPresentException()
         val keyData = keyDataNullable!!
 
 
@@ -54,7 +53,7 @@ import org.jetbrains.exposed.dao.id.IdTable
 import org.jetbrains.exposed.sql.Column
 
 //Table for ${tableName}
-@me.redtea.exposedgenerator.annotations.GeneratedTable
+@tech.carcadex.exposedgenerator.annotations.GeneratedTable
 object $tableName : IdTable<${keyData.field.typeName()}>() {
     ${fields.joinToString("\n    ") { it.generateString() }}
     ${keyData.generateString()}
@@ -106,10 +105,10 @@ object ${className}Converter {
             codeGenerator
         )
             ), property)
-        if(field.sqlType == "") throw UnsupportedTypeException(property.type.resolve())
+        if(field.sqlType == "") throw tech.carcadex.exposedgenerator.processor.UnsupportedTypeException(property.type.resolve())
         if(field.sqlType == "#ignored") field.sqlType = ""
-        if(property.isAnnotationPresent(ID::class)) {
-            keyDataNullable = KeyData(field, property.getAnnotationsByType(ID::class).first().autoIncrement)
+        if(property.isAnnotationPresent(tech.carcadex.exposedgenerator.annotations.ID::class)) {
+            keyDataNullable = KeyData(field, property.getAnnotationsByType(tech.carcadex.exposedgenerator.annotations.ID::class).first().autoIncrement)
         } else fields.add(field)
     }
 }

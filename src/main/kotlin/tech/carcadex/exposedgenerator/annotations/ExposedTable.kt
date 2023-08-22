@@ -1,4 +1,4 @@
-package me.redtea.exposedgenerator.annotations
+package tech.carcadex.exposedgenerator.annotations
 
 @Target(AnnotationTarget.CLASS)
 @Retention(AnnotationRetention.SOURCE)

@@ -1,4 +1,4 @@
-package me.redtea.exposedgenerator.processor
+package tech.carcadex.exposedgenerator.processor
 
 import com.google.devtools.ksp.processing.SymbolProcessor
 import com.google.devtools.ksp.processing.SymbolProcessorEnvironment
@@ -6,7 +6,10 @@ import com.google.devtools.ksp.processing.SymbolProcessorProvider
 
 class ProcessorProvider : SymbolProcessorProvider {
     override fun create(environment: SymbolProcessorEnvironment): SymbolProcessor {
-        return ExposedGeneratorProcessor(environment.codeGenerator, environment.logger)
+        return tech.carcadex.exposedgenerator.processor.ExposedGeneratorProcessor(
+            environment.codeGenerator,
+            environment.logger
+        )
     }
 
 }

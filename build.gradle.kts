@@ -11,8 +11,8 @@ plugins {
 
 val globalArtifactId = "exposedgenerator"
 val globalName = "ExposedGenerator"
-group = "me.redtea"
-version = "1.0"
+group = "tech.carcadex"
+version = "1.1"
 
 repositories {
     mavenCentral()
@@ -65,7 +65,7 @@ publishing {
     publications {
         create<MavenPublication>("maven") {
             artifactId = globalArtifactId
-            groupId = "io.github.iredtea"
+            groupId = "tech.carcadex"
             version = version
             from(components["java"])
                     versionMapping {
@@ -78,16 +78,16 @@ publishing {
                     }
             pom {
                 artifactId = globalArtifactId
-                groupId = "io.github.iredtea"
+                groupId = "tech.carcadex"
                 version = version
                 name.set(globalArtifactId)
                 description.set(globalArtifactId)
-                url.set("https://github.com/iRedTea/CarcadeX")
+                url.set("https://github.com/CarcadeX/CarcadeX")
 
                 licenses {
                     license {
-                        name.set("GNU General Public License v3.0")
-                        url.set("https://www.gnu.org/licenses/gpl-3.0.en.html")
+                        name.set("MIT")
+                        url.set("tech.carcadex")
                     }
                 }
                 developers {
@@ -100,7 +100,7 @@ publishing {
                 scm {
                     connection.set("scm:https://github.com/CarcadeX/$globalName.git")
                     developerConnection.set("git@github.com:CarcadeX/$globalName.git")
-                    url.set("https://github.com/iRedTea/CarcadeX")
+                    url.set("https://github.com/CarcadeX/CarcadeX")
                 }
             }
 
@@ -128,7 +128,7 @@ publishing {
 
 nexusStaging {
     serverUrl = "https://s01.oss.sonatype.org/service/local/"
-    packageGroup = "io.github.iredtea"
+    packageGroup = "tech.carcadex"
     username = "itzRedTea"
     password = project.findProperty("password").toString()
 

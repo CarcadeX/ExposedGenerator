@@ -1,4 +1,4 @@
-package me.redtea.exposedgenerator.processor.model
+package tech.carcadex.exposedgenerator.processor.model
 
 data class KeyData(val field: Field, val autoInc: Boolean) {
     fun generateString(): String {

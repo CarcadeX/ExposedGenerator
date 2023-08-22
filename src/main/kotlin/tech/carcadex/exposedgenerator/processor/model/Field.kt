@@ -1,9 +1,9 @@
-package me.redtea.exposedgenerator.processor.model
+package tech.carcadex.exposedgenerator.processor.model
 
 import com.google.devtools.ksp.symbol.KSType
 import com.squareup.kotlinpoet.ksp.KotlinPoetKspPreview
 import com.squareup.kotlinpoet.ksp.toClassName
-import me.redtea.exposedgenerator.processor.replaceKotlinDefType
+import tech.carcadex.exposedgenerator.processor.replaceKotlinDefType
 
 open class Field(val name: String, val type: KSType, var sqlType: String, var args: MutableList<String> = mutableListOf(), val context: TableContext) {
     open fun generateString(): String {

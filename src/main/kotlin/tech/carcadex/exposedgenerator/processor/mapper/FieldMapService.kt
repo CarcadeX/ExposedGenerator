@@ -1,22 +1,22 @@
-package me.redtea.exposedgenerator.processor.mapper
+package tech.carcadex.exposedgenerator.processor.mapper
 
 import com.google.devtools.ksp.KspExperimental
 import com.google.devtools.ksp.isAnnotationPresent
 import com.google.devtools.ksp.symbol.KSPropertyDeclaration
-import me.redtea.exposedgenerator.annotations.CollectionRef
-import me.redtea.exposedgenerator.annotations.Length
-import me.redtea.exposedgenerator.annotations.RefOnDAO
-import me.redtea.exposedgenerator.processor.mapper.impl.*
-import me.redtea.exposedgenerator.processor.model.Field
-import me.redtea.exposedgenerator.processor.mapper.impl.*
+import tech.carcadex.exposedgenerator.annotations.CollectionRef
+import tech.carcadex.exposedgenerator.annotations.Length
+import tech.carcadex.exposedgenerator.annotations.RefOnDAO
+import tech.carcadex.exposedgenerator.processor.mapper.impl.*
+import tech.carcadex.exposedgenerator.processor.model.Field
+import tech.carcadex.exposedgenerator.processor.mapper.impl.*
 import java.io.File
 
 object FieldMapService {
     private val mappers: MutableCollection<FieldMapper> = mutableSetOf(DefaultTypesMapper, LengthMapper)
     private val verifyMappers = mutableSetOf(StringVerifyMapper)
     private val annotationConflictMappers = mutableMapOf(
-        RefOnDAO::class.java to RefMapper,
-        CollectionRef::class.java to CollectionMapper
+        tech.carcadex.exposedgenerator.annotations.RefOnDAO::class.java to RefMapper,
+        tech.carcadex.exposedgenerator.annotations.CollectionRef::class.java to CollectionMapper
     )
     @OptIn(KspExperimental::class)
     fun map(field: Field, property: KSPropertyDeclaration): Field {

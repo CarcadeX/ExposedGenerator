@@ -1,21 +1,21 @@
-package me.redtea.exposedgenerator.processor.mapper.impl
+package tech.carcadex.exposedgenerator.processor.mapper.impl
 
 import com.google.devtools.ksp.processing.Dependencies
 import com.google.devtools.ksp.symbol.KSPropertyDeclaration
-import me.redtea.exposedgenerator.annotations.CollectionRef
-import me.redtea.exposedgenerator.processor.className
-import me.redtea.exposedgenerator.processor.collectionTable
-import me.redtea.exposedgenerator.processor.mapper.AnnotationMapper
-import me.redtea.exposedgenerator.processor.model.Field
-import me.redtea.exposedgenerator.processor.sqlType
+import tech.carcadex.exposedgenerator.annotations.CollectionRef
+import tech.carcadex.exposedgenerator.processor.className
+import tech.carcadex.exposedgenerator.processor.collectionTable
+import tech.carcadex.exposedgenerator.processor.mapper.AnnotationMapper
+import tech.carcadex.exposedgenerator.processor.model.Field
+import tech.carcadex.exposedgenerator.processor.sqlType
 import java.io.File
 import java.io.OutputStreamWriter
 import kotlin.reflect.KClass
 
-object CollectionMapper : AnnotationMapper<CollectionRef>() {
-    override val annotation: KClass<CollectionRef> = CollectionRef::class
+object CollectionMapper : AnnotationMapper<tech.carcadex.exposedgenerator.annotations.CollectionRef>() {
+    override val annotation: KClass<tech.carcadex.exposedgenerator.annotations.CollectionRef> = tech.carcadex.exposedgenerator.annotations.CollectionRef::class
 
-    override fun map(field: Field, property: KSPropertyDeclaration, annotation: CollectionRef): Field {
+    override fun map(field: Field, property: KSPropertyDeclaration, annotation: tech.carcadex.exposedgenerator.annotations.CollectionRef): Field {
         val tableCol = field.context.className + "" + if(annotation.collectionName == "") field.name.capitalize() else annotation.collectionName;
         val typeCol = className(field.type.arguments[0].type!!.resolve());
         try {

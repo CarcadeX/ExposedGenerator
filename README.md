@@ -20,8 +20,8 @@ dependencies {
     implementation("org.jetbrains.exposed:exposed-dao:0.40.1")
     implementation("org.jetbrains.exposed:exposed-jdbc:0.40.1")
 
-    compileOnly("io.github.iredtea:exposedgenerator:[LATEST_VERSION]")
-    ksp("io.github.iredtea:exposedgenerator:[LATEST_VERSION]")
+    compileOnly("tech.carcadex:exposedgenerator:[LATEST_VERSION]")
+    ksp("tech.carcadex:exposedgenerator:[LATEST_VERSION]")
 }
 ```
 
